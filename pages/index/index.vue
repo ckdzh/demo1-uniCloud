@@ -2,23 +2,53 @@
 	<view class="content">
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
-			<text class="title">{{title}}</text>
 		</view>
+		<view>
+			{{data.title}}-----{{data.detail}}
+		</view> 
+		
 	</view>
 </template>
 
 <script>
+		//引入云对象 
+		const cloudObj1 = uniCloud.importObject('cloudObj1')
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				data: {}
 			}
 		},
 		onLoad() {
-
+			this.getData()
+			this.addData()
+			this.upDate()
+			this.remove()
 		},
 		methods: {
-
+		getData(){
+			cloudObj1.get().then(res=>{
+				this.data = res.data[0]
+				
+				console.log(res,'res');
+				console.log(this.data[0],'this.data');
+			})
+		},
+		addData(){
+			cloudObj1.add().then(res=>{
+				console.log(res,'addres');
+			})
+		},
+		upDate(){
+			cloudObj1.update().then(res=>{
+				console.log(res,'upDate');
+			})
+		},
+		remove(){
+			cloudObj1.remove().then(res=>{
+				console.log(res,'upDate');
+			})
+		}
 		}
 	}
 </script>
