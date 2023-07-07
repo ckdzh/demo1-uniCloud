@@ -3,7 +3,7 @@
 	"required": [],
 	"permission": {
 		"read": false,
-		"create": true,
+		"create": "auth.uid != null",
 		"update": false,
 		"delete": false
 	},
