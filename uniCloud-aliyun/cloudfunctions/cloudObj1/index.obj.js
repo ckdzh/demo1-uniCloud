@@ -9,8 +9,8 @@ module.exports = {
 	},
 	async add(){
 		const res =  await db.collection('article').add({
-			title:"测试",
-			detail:"测试内容"
+			title:"测试关联uid",
+			content:"测试内容"
 		})
 		return res
 	},
@@ -21,6 +21,7 @@ module.exports = {
 		})
 		return res
 	},
+	//注意! 一不小心会删库,TMD 
 	async remove(){
 		const res =  await db.collection('article').doc('64a67789819ce81408685a2e').remove({
 			title:"修改测试标题",

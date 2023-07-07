@@ -5,46 +5,52 @@
 		</view>
 		<view>
 			{{data.title}}-----{{data.detail}}
-		</view> 
-		
+		</view>
+		<button @click="addData">新增</button>
+		<navigator url="/uni_modules/uni-id-pages/pages/login/login-withpwd">登录</navigator>
+
 	</view>
 </template>
 
 <script>
-		//引入云对象 
-		const cloudObj1 = uniCloud.importObject('cloudObj1')
+	//引入云对象 
+	const cloudObj1 = uniCloud.importObject('cloudObj1')
+	//引入数据库
+	const db = uniCloud.database()
 	export default {
 		data() {
 			return {
 				data: {}
 			}
 		},
-		onLoad() {
-		},
+		onLoad() {},
 		methods: {
-		getData(){
-			cloudObj1.get().then(res=>{
-				this.data = res.data[0]
-				
-				console.log(res,'res');
-				console.log(this.data[0],'this.data');
-			})
-		},
-		addData(){
-			cloudObj1.add().then(res=>{
-				console.log(res,'addres');
-			})
-		},
-		upDate(){
-			cloudObj1.update().then(res=>{
-				console.log(res,'upDate');
-			})
-		},
-		remove(){
-			cloudObj1.remove().then(res=>{
-				console.log(res,'upDate');
-			})
-		}
+			getData() {
+				cloudObj1.get().then(res => {
+					this.data = res.data[0]
+
+					console.log(res, 'res');
+					console.log(this.data[0], 'this.data');
+				})
+			},
+			addData() {
+				db.collection('article').add({
+					title: "测试关联uid",
+					content: "测试内容"
+				}).then(res => {
+					console.log(res, 'res');
+				})
+			},
+			upDate() {
+				cloudObj1.update().then(res => {
+					console.log(res, 'upDate');
+				})
+			},
+			remove() {
+				cloudObj1.remove().then(res => {
+					console.log(res, 'upDate');
+				})
+			}
 		}
 	}
 </script>
