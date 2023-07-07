@@ -20,10 +20,6 @@
 			}
 		},
 		onLoad() {
-			this.getData()
-			this.addData()
-			this.upDate()
-			this.remove()
 		},
 		methods: {
 		getData(){
